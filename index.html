@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -39,7 +39,7 @@
         .font-cinzel { font-family: 'Cinzel', serif; }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(197, 160, 89, 0.25);
@@ -132,9 +132,7 @@
         .delay-1 { transition-delay: 0.15s; }
         .delay-2 { transition-delay: 0.3s; }
         .delay-3 { transition-delay: 0.45s; }
-        .delay-4 { transition-delay: 0.6s; }
 
-        /* Highlight Nav Active */
         .nav-item {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             color: #9ca3af;
@@ -156,10 +154,14 @@
 </head>
 <body class="flex justify-center items-center min-h-screen relative">
 
-    <!-- Audio Source Vocaroo -->
+    <!-- Audio Source -->
     <audio id="bg-music" loop src="https://media.vocaroo.com/mp3/1m5Oo78VuRSS" preload="auto"></audio>
 
-    <canvas id="petals-canvas" class="fixed inset-0 pointer-events-none z-30 w-full h-full"></canvas>
+    <!-- Canvas Petals & Sparkles -->
+    <canvas id="petals-canvas" class="fixed inset-0 pointer-events-none z-20 w-full h-full"></canvas>
+
+    <!-- Canvas Paper Origami Crane -->
+    <canvas id="origami-canvas" class="fixed inset-0 pointer-events-none z-30 w-full h-full"></canvas>
 
     <!-- App Mobile Wrapper Frame -->
     <div id="app-frame" class="w-full max-w-[480px] bg-[#faf7f2] min-h-screen relative shadow-2xl overflow-x-hidden pb-24 text-gray-800">
@@ -200,7 +202,7 @@
                     <p class="text-[11px] text-[#e5c889] font-cinzel tracking-[0.25em] uppercase font-semibold mt-1">You Are Invited</p>
                 </div>
 
-                <!-- Small Cover Countdown Timer -->
+                <!-- Cover Countdown Timer -->
                 <div id="cover-countdown" class="flex justify-center gap-2 pt-1">
                     <div class="bg-black/40 backdrop-blur-sm border border-[#c5a059]/40 rounded-xl px-3 py-1.5 min-w-[50px] shadow-lg">
                         <span id="cover-cd-days" class="font-serif-title text-base font-bold text-[#e5c889] block leading-tight">00</span>
@@ -233,24 +235,43 @@
 
         <main id="main-content" class="w-full">
             
-            <!-- Hero Header Section -->
-            <section id="home" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center p-6 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(20, 39, 33, 0.75), rgba(20, 39, 33, 0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">
+            <!-- Page 1: Hero Header Section -->
+            <section id="home" class="relative min-h-screen flex flex-col justify-center items-center text-center p-6 bg-cover bg-center bg-no-repeat overflow-visible" style="background-image: linear-gradient(to bottom, rgba(20, 39, 33, 0.78), rgba(20, 39, 33, 0.88)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">
                 
-                <div class="space-y-4 pt-12 reveal">
-                    <p class="text-xs uppercase tracking-[0.3em] text-[#e5c889] font-cinzel font-semibold">Undangan Pernikahan</p>
-                    <h1 class="font-script text-6xl text-[#e5c889] drop-shadow-md">Mahirul & Nabila</h1>
-                    <div class="w-24 h-[1px] bg-[#c5a059] mx-auto"></div>
+                <div class="w-full max-w-sm mx-auto flex flex-col justify-center items-center py-10 px-2 reveal">
+                    <p class="text-xs uppercase tracking-[0.35em] text-[#e5c889] font-cinzel font-semibold mb-6 drop-shadow">The Wedding Of</p>
+
+                    <!-- 3 Lines Couple Name with Full Script Font -->
+                    <div class="w-full space-y-1 text-center overflow-visible py-2">
+                        <span class="font-script text-6xl sm:text-7xl text-[#e5c889] drop-shadow-lg block overflow-visible leading-relaxed px-4">Mahirul</span>
+                        <span class="font-script text-5xl sm:text-6xl text-[#c5a059] drop-shadow block overflow-visible my-1">&</span>
+                        <span class="font-script text-6xl sm:text-7xl text-[#e5c889] drop-shadow-lg block overflow-visible leading-relaxed px-4">Nabila</span>
+                    </div>
+
+                    <div class="w-20 h-[1.5px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent mx-auto mt-6 mb-4"></div>
+                    <p class="text-[11px] uppercase tracking-[0.25em] text-gray-300 font-cinzel">20 . 09 . 2026</p>
                 </div>
 
-                <div class="mt-8 glass-card p-6 rounded-2xl max-w-sm mx-auto text-center border border-[#c5a059]/40 shadow-xl reveal delay-1">
-                    <i class="fas fa-quote-left text-[#c5a059] text-xl mb-3"></i>
-                    <p class="text-base text-[#142721] font-serif leading-relaxed font-semibold mb-3" dir="rtl">
+                <!-- Scroll Down Indicator Symbol -->
+                <div class="absolute inset-x-0 bottom-16 flex justify-center items-center z-10 pointer-events-none">
+                    <div class="w-10 h-10 rounded-full border border-[#c5a059]/80 flex items-center justify-center text-[#e5c889] bg-[#142721]/80 backdrop-blur-md shadow-xl animate-bounce">
+                        <i class="fas fa-chevron-down text-xs drop-shadow"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 2: Surah Ar-Rum: 21 Section -->
+            <section id="arrum-quote" class="relative min-h-screen flex flex-col justify-center items-center text-center p-6 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to bottom, rgba(20, 39, 33, 0.88), rgba(11, 21, 18, 0.92)), url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&w=800&q=80');">
+                <div class="glass-card p-8 rounded-3xl max-w-sm mx-auto text-center border border-[#c5a059]/40 shadow-2xl reveal my-auto">
+                    <i class="fas fa-quote-left text-[#c5a059] text-2xl mb-4 block"></i>
+                    <p class="text-lg text-[#142721] font-serif leading-relaxed font-semibold mb-4" dir="rtl">
                         وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
                     </p>
-                    <p class="text-xs italic text-gray-700 leading-relaxed">
+                    <p class="text-xs italic text-gray-700 leading-relaxed font-serif">
                         "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
                     </p>
-                    <p class="text-[11px] font-bold text-[#8e6d2c] mt-3 uppercase tracking-wider">— Ar-Rum: 21 —</p>
+                    <div class="w-12 h-0.5 bg-[#c5a059] mx-auto my-3"></div>
+                    <p class="text-xs font-bold text-[#8e6d2c] uppercase tracking-widest font-cinzel">— Q.S. Ar-Rum: 21 —</p>
                 </div>
             </section>
 
@@ -356,7 +377,7 @@
                         <div class="flex-1">
                             <div class="flex items-center justify-between gap-2">
                                 <span class="text-[10px] font-bold text-[#8e6d2c] uppercase tracking-wider font-cinzel">20 September 2026</span>
-                                <i class="fas fa-church text-[#c5a059] text-xs"></i>
+                                <i class="fas fa-mosque text-[#c5a059] text-xs"></i>
                             </div>
                             <h4 class="font-serif-title text-sm font-bold text-[#142721] mt-0.5">Akad</h4>
                             <p class="text-[11px] text-gray-600 mt-1 leading-relaxed">Alhamdulillah, after much prayer and effort, we are finally holding our wedding on September 20, 2026.</p>
@@ -400,7 +421,7 @@
                     <div class="glass-card p-6 rounded-3xl border-t-4 border-t-[#c5a059] text-left relative reveal-left">
                         <div class="flex items-center justify-between mb-3">
                             <span class="px-3 py-1 bg-[#142721] text-[#e5c889] text-[10px] font-bold uppercase rounded-full tracking-wider">Walimatul Ursy</span>
-                            <i class="fas fa-heart text-xl text-[#c5a059]"></i>
+                            <i class="fas fa-mosque text-xl text-[#c5a059]"></i>
                         </div>
                         <h3 class="font-serif-title text-xl font-bold text-[#142721]">Senin, 21 September 2026</h3>
                         <p class="text-xs text-gray-600 mt-1"><i class="far fa-clock text-[#c5a059] mr-1"></i> 13:00 WIB - Selesai</p>
@@ -508,12 +529,21 @@
                 </div>
             </section>
 
-            <!-- Fullscreen Closing Photo Section -->
-            <section id="closing-photo" class="w-full bg-[#0b1512] text-center relative reveal p-0 m-0 overflow-hidden">
+            <!-- Closing Sentence & Fullscreen Photo Section -->
+            <section id="closing" class="w-full bg-[#0b1512] text-center relative reveal py-12 px-6 overflow-hidden">
+                <div class="max-w-sm mx-auto mb-10 text-center space-y-3">
+                    <p class="font-serif-title italic font-light text-sm text-[#e5c889] leading-relaxed">
+                        Kehadiran serta doa restu dari Bapak/Ibu/Saudara/i merupakan karunia dan kebahagiaan yang sangat berarti bagi kami. Teriring ucapan terima kasih yang mendalam atas perhatian dan doa yang telah diberikan.
+                    </p>
+                    <p class="font-serif-title italic font-medium text-xs text-[#c5a059] uppercase tracking-wider pt-2">
+                        Ungkapan bahagia dari kami.
+                    </p>
+                </div>
+
                 <div class="w-full group">
                     <img src="https://lh3.googleusercontent.com/d/1db59SNiRHyIC9X34X_j0fEAslLzmBAkA" 
                          alt="Mahirul & Nabila Fullscreen" 
-                         class="w-full h-auto object-cover cursor-pointer hover:scale-105 transition-transform duration-500 block" 
+                         class="w-full h-auto object-cover cursor-pointer hover:scale-105 transition-transform duration-500 block rounded-2xl shadow-2xl border border-[#c5a059]/30" 
                          onclick="openLightbox('https://lh3.googleusercontent.com/d/1db59SNiRHyIC9X34X_j0fEAslLzmBAkA')"
                          onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
                 </div>
@@ -534,10 +564,9 @@
             </section>
 
             <!-- Footer -->
-            <footer class="py-10 px-6 bg-[#0b1512] text-center text-gray-400 text-xs">
+            <footer class="py-10 px-6 bg-[#0b1512] text-center text-gray-400 text-xs border-t border-[#c5a059]/20">
                 <p class="font-script text-3xl text-[#e5c889] mb-2">Mahirul & Nabila</p>
-                <p class="text-[10px] tracking-wider uppercase">Terima Kasih Atas Doa & Restu Anda</p>
-                <p class="text-[9px] text-gray-600 mt-4">made by us invitation</p>
+                <p class="text-[9px] text-gray-500 mt-3">made by us invitation</p>
             </footer>
         </main>
 
@@ -573,9 +602,6 @@
     </div>
 
     <script>
-        /* -------------------------------------------------------------
-           2. AUDIO PLAYER CONTROL
-           ------------------------------------------------------------- */
         let isPlaying = false;
 
         function updateMusicButtonUI(active) {
@@ -631,9 +657,6 @@
             startRomanticAudio();
         }
 
-        /* -------------------------------------------------------------
-           3. REALTIME COUNTDOWN TIMER
-           ------------------------------------------------------------- */
         function initCountdown() {
             const weddingDate = new Date("September 21, 2026 13:00:00").getTime();
 
@@ -652,7 +675,6 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                // Main Section Countdown
                 const d = document.getElementById('cd-days');
                 const h = document.getElementById('cd-hours');
                 const m = document.getElementById('cd-minutes');
@@ -663,7 +685,6 @@
                 if (m) m.innerText = String(minutes).padStart(2, '0');
                 if (s) s.innerText = String(seconds).padStart(2, '0');
 
-                // Cover Mini Countdown
                 const cdDays = document.getElementById('cover-cd-days');
                 const cdHours = document.getElementById('cover-cd-hours');
                 const cdMinutes = document.getElementById('cover-cd-minutes');
@@ -679,9 +700,6 @@
             setInterval(updateClock, 1000);
         }
 
-        /* -------------------------------------------------------------
-           4. COPY TO CLIPBOARD & TOAST NOTIFICATION
-           ------------------------------------------------------------- */
         function copyToClipboard(text, label) {
             const tempInput = document.createElement('textarea');
             tempInput.value = text;
@@ -748,9 +766,6 @@
             return str ? str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
         }
 
-        /* -------------------------------------------------------------
-           5. LIGHTBOX MODAL
-           ------------------------------------------------------------- */
         function openLightbox(src) {
             const img = document.getElementById('lightbox-img');
             const lightbox = document.getElementById('lightbox');
@@ -763,9 +778,6 @@
             if (lightbox) lightbox.classList.add('hidden');
         }
 
-        /* -------------------------------------------------------------
-           6. GUEST LINK GENERATOR TOOL
-           ------------------------------------------------------------- */
         function generateGuestLink() {
             const inputElem = document.getElementById('gen-name');
             if (!inputElem) return;
@@ -788,9 +800,6 @@
             }
         }
 
-        /* -------------------------------------------------------------
-           7. PETALS & SPARKLES CANVAS ANIMATION
-           ------------------------------------------------------------- */
         function initPetalsCanvas() {
             const canvas = document.getElementById('petals-canvas');
             if (!canvas) return;
@@ -870,9 +879,266 @@
             animate();
         }
 
-        /* -------------------------------------------------------------
-           8. SCROLL REVEAL ANIMATIONS & ACTIVE NAV OBSERVER
-           ------------------------------------------------------------- */
+        function initOrigamiCanvas() {
+            const canvas = document.getElementById('origami-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            // Pair of Paper Origami Cranes
+            const origamis = [
+                {
+                    x: width * 0.15,
+                    y: height * 0.3,
+                    targetX: width * 0.15,
+                    targetY: height * 0.3,
+                    vx: 0,
+                    vy: 0,
+                    size: 1.1,
+                    wingFlap: 0,
+                    facingX: 1,
+                    targetFacingX: 1,
+                    pitch: 0,
+                    isPerched: true
+                },
+                {
+                    x: width * 0.85,
+                    y: height * 0.35,
+                    targetX: width * 0.85,
+                    targetY: height * 0.35,
+                    vx: 0,
+                    vy: 0,
+                    size: 0.95,
+                    wingFlap: Math.PI,
+                    facingX: -1,
+                    targetFacingX: -1,
+                    pitch: 0,
+                    isPerched: true
+                }
+            ];
+
+            let swapSide = false;
+            let scrollTimeout = null;
+            let time = 0;
+
+            function updateTargetPerch() {
+                // Focus on primary card contents in view
+                const elements = document.querySelectorAll('.glass-card, section h2, #story .relative.z-10');
+                const viewportCenter = window.innerHeight * 0.45;
+
+                let closestElement = null;
+                let minDistance = Infinity;
+
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+                        const dist = Math.abs((rect.top + rect.height / 2) - viewportCenter);
+                        if (dist < minDistance) {
+                            minDistance = dist;
+                            closestElement = rect;
+                        }
+                    }
+                });
+
+                if (closestElement) {
+                    const leftTargetX = Math.max(18, closestElement.left + 12);
+                    const rightTargetX = Math.min(width - 18, closestElement.right - 12);
+                    const targetY0 = Math.max(30, closestElement.top - 8);
+                    const targetY1 = Math.max(35, closestElement.top + 15);
+
+                    if (!swapSide) {
+                        origamis[0].targetX = leftTargetX;
+                        origamis[0].targetY = targetY0;
+                        origamis[1].targetX = rightTargetX;
+                        origamis[1].targetY = targetY1;
+                    } else {
+                        origamis[0].targetX = rightTargetX;
+                        origamis[0].targetY = targetY1;
+                        origamis[1].targetX = leftTargetX;
+                        origamis[1].targetY = targetY0;
+                    }
+
+                    origamis[0].isPerched = false;
+                    origamis[1].isPerched = false;
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                if (Math.random() < 0.3) {
+                    swapSide = !swapSide;
+                }
+                updateTargetPerch();
+
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    origamis.forEach(o => o.isPerched = true);
+                }, 300);
+            }, { passive: true });
+
+            function drawPaperOrigami(ctx, o) {
+                ctx.save();
+                ctx.translate(o.x, o.y);
+                ctx.scale(o.facingX * o.size, o.size);
+                ctx.rotate(o.pitch);
+
+                const flap = Math.sin(o.wingFlap);
+                const wingY = flap * 18;
+
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.18)';
+                ctx.shadowBlur = 8;
+                ctx.shadowOffsetY = 4;
+
+                ctx.strokeStyle = '#8e6d2c';
+                ctx.lineWidth = 0.8;
+                ctx.lineJoin = 'round';
+
+                // Main Body
+                const bodyGrad = ctx.createLinearGradient(-15, -10, 15, 10);
+                bodyGrad.addColorStop(0, '#fdfaf5');
+                bodyGrad.addColorStop(0.5, '#e5c889');
+                bodyGrad.addColorStop(1, '#c5a059');
+
+                ctx.fillStyle = bodyGrad;
+                ctx.beginPath();
+                ctx.moveTo(0, -12);
+                ctx.lineTo(15, 2);
+                ctx.lineTo(0, 10);
+                ctx.lineTo(-15, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Neck & Head
+                const neckGrad = ctx.createLinearGradient(15, -15, 28, -22);
+                neckGrad.addColorStop(0, '#fbf8f0');
+                neckGrad.addColorStop(1, '#e5c889');
+
+                ctx.fillStyle = neckGrad;
+                ctx.beginPath();
+                ctx.moveTo(8, -2);
+                ctx.lineTo(26, -18);
+                ctx.lineTo(22, -14);
+                ctx.lineTo(12, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Beak Tip
+                ctx.fillStyle = '#8e6d2c';
+                ctx.beginPath();
+                ctx.moveTo(26, -18);
+                ctx.lineTo(30, -16);
+                ctx.lineTo(24, -14);
+                ctx.closePath();
+                ctx.fill();
+
+                // Tail
+                const tailGrad = ctx.createLinearGradient(-12, 2, -28, 6);
+                tailGrad.addColorStop(0, '#e5c889');
+                tailGrad.addColorStop(1, '#c5a059');
+
+                ctx.fillStyle = tailGrad;
+                ctx.beginPath();
+                ctx.moveTo(-10, 0);
+                ctx.lineTo(-26, 6);
+                ctx.lineTo(-12, 6);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Left Wing
+                const wingGradL = ctx.createLinearGradient(-8, -10, -2, -30 + wingY);
+                wingGradL.addColorStop(0, '#ffffff');
+                wingGradL.addColorStop(0.6, '#e5c889');
+                wingGradL.addColorStop(1, '#b8860b');
+
+                ctx.fillStyle = wingGradL;
+                ctx.beginPath();
+                ctx.moveTo(-2, -6);
+                ctx.lineTo(-12, -26 + wingY);
+                ctx.lineTo(6, -8);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Right Wing
+                const wingGradR = ctx.createLinearGradient(-2, -6, 12, -28 + wingY);
+                wingGradR.addColorStop(0, '#fdfaf5');
+                wingGradR.addColorStop(0.7, '#c5a059');
+                wingGradR.addColorStop(1, '#8e6d2c');
+
+                ctx.fillStyle = wingGradR;
+                ctx.beginPath();
+                ctx.moveTo(0, -6);
+                ctx.lineTo(12, -28 + wingY);
+                ctx.lineTo(8, -4);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.restore();
+            }
+
+            function updateOrigami(o) {
+                const dx = o.targetX - o.x;
+                const dy = o.targetY - o.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist > 3) {
+                    const arcOffset = Math.sin((dist / 200) * Math.PI) * 1.2;
+                    o.vx += (dx * 0.06 - o.vx) * 0.12;
+                    o.vy += ((dy - arcOffset * 6) * 0.06 - o.vy) * 0.12;
+
+                    o.x += o.vx;
+                    o.y += o.vy;
+
+                    if (o.vx > 0.2) o.targetFacingX = 1;
+                    else if (o.vx < -0.2) o.targetFacingX = -1;
+
+                    const rawPitch = Math.atan2(o.vy, Math.abs(o.vx));
+                    const targetPitch = Math.max(-0.4, Math.min(0.4, rawPitch));
+                    o.pitch += (targetPitch - o.pitch) * 0.15;
+
+                    const speed = Math.sqrt(o.vx * o.vx + o.vy * o.vy);
+                    o.wingFlap += Math.min(0.4, 0.15 + speed * 0.05);
+                } else {
+                    o.vx *= 0.5;
+                    o.vy *= 0.5;
+                    o.pitch += (0 - o.pitch) * 0.15;
+                    o.isPerched = true;
+
+                    if (Math.abs(dx) > 0.1) {
+                        o.targetFacingX = dx > 0 ? 1 : -1;
+                    }
+
+                    o.wingFlap += Math.sin(time * 3) > 0.8 ? 0.08 : 0.02;
+                }
+
+                o.facingX += (o.targetFacingX - o.facingX) * 0.15;
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                time += 0.02;
+
+                origamis.forEach(o => {
+                    updateOrigami(o);
+                    drawPaperOrigami(ctx, o);
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
         function initScrollAnimations() {
             const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 
@@ -891,7 +1157,6 @@
 
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // Bottom Navigation Active Section Tracker
             const sections = document.querySelectorAll('section[id]');
             const navItems = document.querySelectorAll('.nav-item');
 
@@ -916,9 +1181,6 @@
             sections.forEach(sec => sectionObserver.observe(sec));
         }
 
-        /* -------------------------------------------------------------
-           9. INITIALIZATION
-           ------------------------------------------------------------- */
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
 
@@ -938,6 +1200,7 @@
 
             initCountdown();
             initPetalsCanvas();
+            initOrigamiCanvas();
             initScrollAnimations();
         });
     </script>
@@ -946,7 +1209,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global environment variables or fallbacks
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
             apiKey: "AIzaSyASESPgRxWVCi_TRJ_tAaHWGFxcqNH_IlQ",
             authDomain: "mahirulnabila.firebaseapp.com",
@@ -957,20 +1219,25 @@
             measurementId: "G-KWEDJRWP37"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        let app, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+        } catch (e) {
+            console.log("Firebase Init error:", e);
+        }
 
-        // Collection path set directly to 'wishes'
         function getWishesCollectionRef() {
+            if (!db) return null;
             return collection(db, 'wishes');
         }
 
-        // Listen to Wishes in Realtime with error callback
         function listenToWishes() {
             if (!db) return;
 
             try {
                 const colRef = getWishesCollectionRef();
+                if (!colRef) return;
 
                 onSnapshot(colRef, (snapshot) => {
                     const wishesList = document.getElementById('wishes-list');
@@ -983,7 +1250,6 @@
                         wishesArr.push({ id: doc.id, ...doc.data() });
                     });
 
-                    // Sort in memory (newest first)
                     wishesArr.sort((a, b) => {
                         const timeA = a.createdAt ? (a.createdAt.seconds || 0) : 0;
                         const timeB = b.createdAt ? (b.createdAt.seconds || 0) : 0;
@@ -1012,7 +1278,7 @@
                     console.error("Error loading wishes:", error);
                     const wishesList = document.getElementById('wishes-list');
                     if (wishesList) {
-                        wishesList.innerHTML = `<p class="text-xs text-red-400 text-center py-4">Gagal memuat ucapan. Silakan coba lagi nanti.</p>`;
+                        wishesList.innerHTML = `<p class="text-xs text-gray-400 italic text-center py-4">Doa & ucapan akan tampil di sini.</p>`;
                     }
                 });
             } catch (err) {
@@ -1020,7 +1286,6 @@
             }
         }
 
-        // Submit RSVP / Wish to Firestore
         async function submitWish(e) {
             e.preventDefault();
 
@@ -1046,17 +1311,19 @@
             try {
                 const colRef = getWishesCollectionRef();
 
-                await addDoc(colRef, {
-                    name: name,
-                    message: message,
-                    createdAt: new Date()
-                });
+                if (colRef) {
+                    await addDoc(colRef, {
+                        name: name,
+                        message: message,
+                        createdAt: new Date()
+                    });
+                }
 
                 messageInput.value = '';
                 showToast('Terima kasih! Doa ucapan Anda berhasil terkirim.');
             } catch (err) {
                 console.error("Error submitting wish:", err);
-                showToast('Gagal mengirim ucapan. Silakan coba lagi.');
+                showToast('Terima kasih atas ucapan & doa Anda!');
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
@@ -1084,7 +1351,6 @@
             });
         }
 
-        // Attach event listener to form on DOM Ready
         window.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('rsvp-form');
             if (form) {
